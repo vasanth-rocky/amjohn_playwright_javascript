@@ -16,7 +16,9 @@ async clickonCart(){
 
 async cartAndCheckout(productPage){
       
-      await this.clickonCart();
+     const cartButton = productPage.locator('#add-to-cart-button').nth(1);
+     await cartButton.click();
+     console.log('First product from the list selected.');
     
       const goToCart = productPage.getByText('Go to Cart');
       await expect(goToCart).toBeVisible();
@@ -36,6 +38,7 @@ async cartAndCheckout(productPage){
       const checkout = productPage.locator('//input[@name="proceedToRetailCheckout"]')
       await expect(checkout).toBeVisible();
       await checkout.click();
+      await productPage.waitForTimeout(2000);
       console.log('Product Checkedout successfully.')
 }
 

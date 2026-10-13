@@ -1,5 +1,6 @@
 import {BasePage} from "./BasePage.js"
 import { testData } from '../testdata/testdata.js';
+import { expect } from "@playwright/test";
 
 export class HomePage extends BasePage{
 
@@ -40,9 +41,15 @@ async sliderSetPrice(page, minimum, minMinimum, maximum, maxMaximum){
                 break;
             }
         }
-console.log(`Price range set: ₹${minPrice} - ₹${maxPrice}`);
+    console.log(`Price range set: ₹${minPrice} - ₹${maxPrice}`);
+    await page.waitForTimeout(3000);
     }
 
+    async textResults(){
+        //Verify "Results" is visible.
+        const resultsText = await this.page.locator('//h2[@class="a-size-medium-plus a-spacing-none a-color-base a-text-bold"]').first().innerText();
+        expect(resultsText).toBe("Results");    
+    }
 
 }
 

@@ -25,7 +25,6 @@ test('Amazon E2E Purchase Flow', async ({ page }) => {
   
   // Step: 3 - Set price ranges thru slider.js file
   await homepage.sliderSetPrice(page, testData.minimum, testData.minMinimum, testData.maximum, testData.maxMaximum);
-  await basepage.waitForLoad(page);
 
   // Step: 4 - To validate all pages prices is between ranges thru validationsloops.js file
   //Loop to validate each page price is between input price ranges, and nextPage verifications.
